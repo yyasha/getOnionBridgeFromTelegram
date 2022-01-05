@@ -5,8 +5,6 @@ from os import system
 from time import sleep
 from sys import argv
 
-#os.chdir(os.path.dirname(os.path.realpath(__file__))) # hack for systemd
-
 logger = logging.getLogger("getbridges")
 logger.setLevel(logging.INFO)
 fh = logging.FileHandler("getbridges.log") # TODO: auto-rotation
@@ -32,6 +30,7 @@ def main():
 	OUTPUT_LINES = []
 
 	found = False
+
 	for line in LINES:
 		if 'bridge obfs4' in line:
 			found = True
@@ -39,9 +38,7 @@ def main():
 		else:
 			OUTPUT_LINES.append(line)
 
-	if found:
-		pass
-	else:
+	if not found:
 		OUTPUT_LINES.append("bridge {}\n".format(BRIDGE))
 
 	with open('/etc/tor/torrc', 'w') as f:
@@ -52,7 +49,8 @@ def main():
 
 
 # section for supervisord
-if len(argv) > 0:
+
+if len(argv) > 1:
 	while True:
 		main()
 		try:
@@ -63,4 +61,4 @@ if len(argv) > 0:
 else:
 	main()
 
-# kill me for this code .__.
+# kill @delyee for this code .__.

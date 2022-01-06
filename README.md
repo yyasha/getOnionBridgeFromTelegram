@@ -33,6 +33,7 @@ check status: `supervisorctl status getOnionBridgeFromTelegram`
 1. `python3 main.py` and paste 6-digit code from Telegram
 2. `crontab -e`
 3. `@reboot sleep 60 && /usr/bin/python3 /root/getOnionBridgeFromTelegram/main.py`
+4. `0 3 * * * usr/bin/python3 /root/getOnionBridgeFromTelegram/main.py >/dev/null 2>&1` for running on a timetable
 
 ## systemd
 

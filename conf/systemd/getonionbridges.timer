@@ -1,8 +1,9 @@
 [Unit]
-Description="Run script after 1 munute after boot"
+Description="Run script every day at 2pm"
 
 [Timer]
-OnBootSec=1m
+Unit=getonionbridges.service
+OnCalendar=*-*-* 2:00:00
 
 [Install]
 WantedBy=default.target
